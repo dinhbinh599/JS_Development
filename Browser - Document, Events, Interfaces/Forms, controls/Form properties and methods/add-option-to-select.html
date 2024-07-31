@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <!-- Question -->
+    <!-- Use JavaScript to:
+
+    Show the value and the text of the selected option.
+    Add an option: <option value="classic">Classic</option>.
+    Make it selected.
+    Note, if you’ve done everything right, your alert should show blues. -->
+
+    <!-- <select id="genres">
+        <option value="rock">Rock</option>
+        <option value="blues" selected>Blues</option>
+      </select> -->
+      <select id="genres" multiple>
+        <option value="rock">Rock</option>
+        <option value="blues" selected>Blues</option>
+      </select>
+      <script>
+        let select = document.getElementById('genres');
+
+        let selectedOptions = Array.from(select.options)
+        .filter(option => option.selected);
+
+        // Or use selectedIndex to get selectedOption in case select is not multiple
+        // let selectedOption = select.options[genres.selectedIndex];
+
+        console.log(selectedOptions[0]);
+
+        let option = new Option('Classic', 'classic', true, true);
+
+        select.append(option);
+
+        let test = genres.selectedIndex;
+
+
+      </script>
+</body>
+</html>
