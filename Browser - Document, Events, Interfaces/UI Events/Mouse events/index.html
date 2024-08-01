@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+
+<!-- Create a list where elements are selectable, like in file-managers.
+
+A click on a list element selects only that element (adds the class .selected), deselects all others.
+If a click is made with Ctrl (Cmd for Mac), then the selection is toggled on the element, but other elements are not modified. 
+
+P.S. For this task we can assume that list items are text-only. No nested tags.
+
+P.P.S. Prevent the native browser selection of the text on clicks. -->
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    .selected {
+      background: #0f0;
+    }
+
+    li {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  Click on a list item to select it.
+  <br>
+
+  <ul id="ul">
+    <li>Christopher Robin</li>
+    <li>Winnie-the-Pooh</li>
+    <li>Tigger</li>
+    <li>Kanga</li>
+    <li>Rabbit. Just rabbit.</li>
+  </ul>
+
+  <script>
+
+    // prevent unneeded selection of list elements on clicks
+    ul.onmousedown = function(){
+        return false;
+    }
+
+    // ...your code...
+    ul.onclick = function(e){
+        if (e.target.tagName !== 'LI'){
+            return;
+        }
+        if (e.ctrlKey || e.metaKey){
+            e.target.classList.toggle('selected');
+            return;
+        }
+        let selected = ul.querySelectorAll('.selected');
+        for (let elem of selected) {
+            elem.classList.remove('selected');
+        }
+        // let allLi = this.getElementsByTagName('li');
+        // for (let li of allLi){
+        //     li.classList.remove('selected');
+        // }
+        e.target.classList.add('selected');
+    }
+  </script>
+
+</body>
+</html>
