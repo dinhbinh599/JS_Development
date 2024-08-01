@@ -37,13 +37,13 @@ P.P.S. Prevent the native browser selection of the text on clicks. -->
   </ul>
 
   <script>
+    // ...your code...
 
     // prevent unneeded selection of list elements on clicks
     ul.onmousedown = function(){
         return false;
     }
 
-    // ...your code...
     ul.onclick = function(e){
         if (e.target.tagName !== 'LI'){
             return;
