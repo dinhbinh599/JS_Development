@@ -39,8 +39,26 @@ Bottom-right, inner corner (there are several ways, choose one). -->
 
 
   <script>
+    let coors = field.getBoundingClientRect();
     // ...your code...
+    alert(`upper left: ${coors.left}:${coors.top}`);
+    alert(`bottom right: ${coors.right}:${coors.bottom}`);
+    alert(`upper left: ${coors.left + ((field.offsetWidth - field.clientWidth)/2)}:${coors.top + ((field.offsetHeight - field.clientHeight)/2)}`);
+    //or
+    // alert(`upper left: ${coors.left + field.clientLeft}:${coors.top + field.clientLeft}`);
     
+    alert(`bottom right: ${coors.right - ((field.offsetWidth - field.clientWidth)/2)}:${coors.bottom - ((field.offsetHeight - field.clientHeight)/2)}`);
+    //or
+//     let answer4 = [
+//   coords.right - parseInt(getComputedStyle(field).borderRightWidth),
+//   coords.bottom - parseInt(getComputedStyle(field).borderBottomWidth)
+// ];
+// or 
+// let answer4 = [
+//   coords.left + elem.clientLeft + elem.clientWidth,
+//   coords.top + elem.clientTop + elem.clientHeight
+// ];
+
   </script>
 
 </body>

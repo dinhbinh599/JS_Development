@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<button id="test">click</button>
+<button id="test1">click1</button>
+
+<script>
+"use strict";
+
+let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
+width=0,height=0,left=-1000,top=-1000`;
+
+test.onclick = () => {
+  open('https://javascript.info/popup-windows', 'test', params);
+};
+
+test1.onclick = () => {
+  open('https://javascript.info/cross-window-communication', 'test', params);
+};
+
+</script>
