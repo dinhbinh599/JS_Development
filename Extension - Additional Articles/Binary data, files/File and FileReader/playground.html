@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="file" onchange="processFile(this)">
+
+    <script>
+        function processFile(input){
+            let file = input.files[0];
+
+            alert(`File name: ${file.name}`);
+            alert(`Last modified: ${file.lastModified}`);
+
+            let fileReader = new FileReader();
+            fileReader.readAsText(file);
+            
+            fileReader.onload = function() {
+                console.log(fileReader.result);
+            }
+
+            fileReader.onerror = function() {
+                console.log(fileReader.error);
+            }
+        }
+    </script>
+</body>
+</html>
