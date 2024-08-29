@@ -1,0 +1,51 @@
+<!-- Create a sliding menu
+
+Create a menu that opens/collapses on click: -->
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    .menu ul {
+        margin: 0;
+        list-style: none;
+        padding-left: 20px;
+        display: none;
+    }
+
+    .menu .title::before {
+      content: '▶ ';
+      font-size: 80%;
+      color: green;
+    }
+
+    .menu.open .title::before {
+      content: '▼ ';
+    }
+
+    .menu.open ul {
+      display: block;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="menu">
+  <span class="title">Sweeties (click me)!</span>
+  <ul>
+    <li>Cake</li>
+    <li>Donut</li>
+    <li>Honey</li>
+  </ul>
+</div>
+  <script>
+    let elem = document.getElementsByClassName("menu")[0];
+    elem.onclick = function(){
+        elem.classList.toggle("open");
+    }
+  </script>
+
+</body>
+</html>

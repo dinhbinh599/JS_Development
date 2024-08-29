@@ -1,0 +1,89 @@
+<!-- Move the ball across the field to a click. Like this:
+
+Requirements:
+
+The ball center should come exactly under the pointer on click (if possible without crossing the field edge).
+CSS-animation is welcome.
+The ball must not cross field boundaries.
+When the page is scrolled, nothing should break.
+Notes:
+
+The code should also work with different ball and field sizes, not be bound to any fixed values.
+Use properties event.clientX/event.clientY for click coordinates. -->
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    #field {
+      width: 200px;
+      height: 150px;
+      border: 10px solid black;
+      background-color: #00FF00;
+      position: relative;
+      overflow: hidden;
+    }
+    #ball {
+        position: absolute;
+        left: 0; /* relative to the closest positioned ancestor (field) */
+        top: 0;
+        transition: 0.5s all; /* CSS animation for left/top makes the ball fly */
+    }
+  </style>
+</head>
+
+<body style="height:2000px">
+
+  Click on a field to move the ball there.
+  <br> The ball should never leave the field.
+
+
+  <div id="field">
+    <img src="https://en.js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  </div>
+  <script>
+        field.onclick = function(event){
+            // the ball has position:absolute, the field: position:relative
+            // so ball coordinates are relative to the field inner left-upper corner
+            fieldCoords = field.getBoundingClientRect();
+
+            // Click positions minus the positions of the fields
+            let ballCoordTop = event.clientY - fieldCoords.top;
+            let ballCoordLeft = event.clientX - fieldCoords.left;
+
+            // Minus the borders of the field
+            ballCoordTop = ballCoordTop - field.clientTop;
+            ballCoordLeft = ballCoordLeft - field.clientLeft;
+
+            // Minus half the size of the ball to position the mouse cursor at the middle of the ball
+            ballCoordTop = ballCoordTop - ball.offsetHeight/2;
+            ballCoordLeft = ballCoordLeft - ball.offsetWidth/2;
+
+            // Prevent crossing the left field
+            if (ballCoordLeft < 0) ballCoordLeft = 0;
+
+            // Prevent crossing the top field
+            if (ballCoordTop < 0) ballCoordTop = 0;
+
+            // Prevent crossing the right field
+            if ((ballCoordLeft + ball.offsetWidth) > field.clientWidth){
+                ballCoordLeft = field.clientWidth - ball.offsetWidth;
+            }
+
+            // Prevent crossing the bottom field
+            if ((ballCoordTop + ball.offsetHeight) > field.clientHeight){
+                ballCoordTop = field.clientHeight - ball.offsetHeight;
+            }
+
+            ball.style.top = ballCoordTop + 'px';
+            ball.style.left = ballCoordLeft + 'px';
+
+            
+        }
+  </script>
+
+</body>
+</html>
