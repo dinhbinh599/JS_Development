@@ -1,0 +1,19 @@
+<!-- Write a RegExp that matches colors in the format #abc or #abcdef. That is: # followed by 3 or 6 hexadecimal digits. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    let regexp = /#([0-9a-z]{3}){1,2}\b/gi;
+
+    let str = "color: #3f3; background-color: #AA00ef; and: #abcd";
+
+    alert( str.match(regexp) ); // #3f3 #AA00ef
+    </script>
+</body>
+</html>

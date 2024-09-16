@@ -1,0 +1,49 @@
+<!-- An arithmetical expression consists of 2 numbers and an operator between them, for instance:
+
+1 + 2
+1.2 * 3.4
+-3 / -6
+-2 - 2
+The operator is one of: "+", "-", "*" or "/".
+
+There may be extra spaces at the beginning, at the end or between the parts.
+
+Create a function parse(expr) that takes an expression and returns an array of 3 items:
+
+The first number.
+The operator.
+The second number. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function parse(text){
+            let regexp = /(-?\d+(?:\.\d+)?\b)\s*([-+*/])\s*(-?\d+(?:\.\d+)?\b)/
+            let result = text.match(regexp);
+            return [result[1], result[2], result[3]];
+
+            // Use named groups
+
+            // let regexp = /(?<a>-?\d+(?:\.\d+)?)\s*(?<operator>[-+*\/])\s*(?<b>-?\d+(?:\.\d+)?)/;
+
+            // let result = expr.match(regexp);
+
+            // return [result.groups.a, result.groups.operator, result.groups.b];
+        }
+
+        let [a, op, b] = parse("1.2 / 3.4");
+
+        alert(a); // 1.2
+        alert(op); // *
+        alert(b); // 3.4
+
+
+    </script>
+</body>
+</html>
