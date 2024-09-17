@@ -1,0 +1,35 @@
+<!-- We have a string with an HTML Document.
+
+Write a regular expression that inserts <h1>Hello</h1> immediately after <body> tag. The tag may have attributes. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        let str = `
+        <html>
+          <body style="height: 200px">
+          ...
+          </body>
+        </html>
+        `;
+
+        let regexp = /(?<=(<body.*?>))/;
+      
+        str = str.replace(regexp, `<h1>Hello</h1>`);
+
+        //or
+        // let regexp = /<body.*?>/;
+      
+        // str = str.replace(regexp, `$&<h1>Hello</h1>`);
+
+        alert(str);
+    </script>
+</body>
+</html>
