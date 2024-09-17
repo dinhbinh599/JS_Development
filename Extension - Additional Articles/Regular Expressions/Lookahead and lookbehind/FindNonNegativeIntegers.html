@@ -1,0 +1,23 @@
+<!-- There’s a string of integer numbers.
+
+Create a regexp that looks for only non-negative ones (zero is allowed). -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let regexp = /(?<!-)(?<!\d)\d+/g;
+
+        //let regexp = /(?<!-)\b\d+/g;
+
+        let str = "0 12 -5 123 -18";
+
+        alert( str.match(regexp) ); // 0, 12, 123
+    </script>
+</body>
+</html>
