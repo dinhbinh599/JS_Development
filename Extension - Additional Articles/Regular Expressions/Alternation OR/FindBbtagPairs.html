@@ -1,0 +1,50 @@
+<!-- A “bb-tag” looks like [tag]...[/tag], where tag is one of: b, url or quote.
+
+For instance:
+
+[b]text[/b]
+[url]http://google.com[/url]
+BB-tags can be nested. But a tag can’t be nested into itself, for instance:
+
+Normal:
+[url] [b]http://google.com[/b] [/url]
+[quote] [b]text[/b] [/quote]
+
+Can't happen:
+[b][b]text[/b][/b]
+Tags can contain line breaks, that’s normal:
+
+[quote]
+  [b]text[/b]
+[/quote]
+Create a regexp to find all BB-tags with their contents. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // let regexp = /\[(b|url|quote)].*?\[\/\1]/gs;
+        let regexp = /(\[(?<tag>url|b|quote)\])(.*?)(\[\/\k<tag>\])/gs;
+
+        let str = "..[url]http://google.com[/url]..";
+        alert( str.match(regexp) ); // [url]http://google.com[/url]
+
+        let str1 = "..[url][b]http://google.com[/b][/url]..";
+        alert( str1.match(regexp) ); // [url][b]http://google.com[/b][/url]
+
+        let str2 = `
+          [b]hello![/b]
+          [quote]
+            [url]http://google.com[/url]
+          [/quote]
+        `;
+
+        alert( str2.match(regexp) );
+    </script>
+</body>
+</html>

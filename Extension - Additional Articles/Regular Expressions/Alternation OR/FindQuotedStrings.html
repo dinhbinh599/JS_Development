@@ -1,0 +1,26 @@
+<!-- Create a regexp to find strings in double quotes "...".
+
+The strings should support escaping, the same way as JavaScript strings do. For instance, quotes can be inserted as \" a newline as \n, and the backslash itself as \\. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+//         First we look for an opening quote "
+// Then if we have a backslash \\ (we have to double it in the pattern because it is a special character), then any character is fine after it (a dot).
+// Otherwise we take any character except a quote (that would mean the end of the string) and a backslash (to prevent lonely backslashes, the backslash is only used with some other symbol after it): [^"\\]
+// …And so on till the closing quote.
+        let regexp = /"([^"\\]|\\.)*"/g;
+
+        let str = ' .. "test me" .. "Say \\"Hello\\"!" .. "\\\\ \\"" .. ';
+
+        // the in-memory string
+        alert(str.match(regexp)); //  .. "test me" .. "Say \"Hello\"!" .. "\\ \"" ..
+    </script>
+</body>
+</html>

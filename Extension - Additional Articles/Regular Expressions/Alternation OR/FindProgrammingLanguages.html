@@ -1,0 +1,21 @@
+<!-- There are many programming languages, for instance Java, JavaScript, PHP, C, C++.
+
+Create a regexp that finds them in the string Java JavaScript PHP C++ C: -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //let regexp = /JavaScript|Java|C\+\+|C|PHP/g;
+        let regexp = /Java(Script)?|C(\+\+)?|PHP/g;
+
+
+        alert("Java JavaScript PHP C++ C".match(regexp)); // Java JavaScript PHP C++ C
+    </script>
+</body>
+</html>
